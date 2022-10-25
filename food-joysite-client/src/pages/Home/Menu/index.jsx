@@ -38,7 +38,7 @@ const Menu = () => {
  }, [query])
   
       return (
-          <div className="body">
+          <div className="body" id="menu">
                   {/* <!--========== Content ==========--> */}
                   <div>
                     <p className="tittle">
@@ -58,7 +58,9 @@ const Menu = () => {
                                   <Circles
                                   color="rgb(204, 21, 21)"
                                   display="block"
-                                  margin="auto" 
+                                  margin-left="auto"
+                                  margin-right="auto" 
+                                  className='loader'
                                   />
                                   : (
                                     backendData?.map((item, index) => (

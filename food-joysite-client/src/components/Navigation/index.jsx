@@ -16,7 +16,7 @@ const Navigation = () => {
           />
         <Nav className="ml-auto nav-text">
           <Nav.Link to ="/">Home</Nav.Link>
-          <Nav.Link to ="/Menu">Menu</Nav.Link>
+          <Nav.Link href ="#menu">Menu</Nav.Link>
           <NavDropdown title="Category" className="basic-nav-dropdown">
               <NavDropdown.Item to="/FoodCategory" className='category'>
                 Food
@@ -31,12 +31,10 @@ const Navigation = () => {
                 Dessert
               </NavDropdown.Item>
             </NavDropdown>
-          <Nav.Link to ="/Contact">Contact Us</Nav.Link>
+          <Nav.Link href ="#footer">Contact Us</Nav.Link>
           <Nav className='icon'>
           <Nav.Link to ="/Cart">
-              <AddShoppingCartIcon>
-                ICONS
-              </AddShoppingCartIcon>
+              <AddShoppingCartIcon color="action" />
           </Nav.Link>
           <Nav.Link to ="/User">
             <AccountCircleIcon>

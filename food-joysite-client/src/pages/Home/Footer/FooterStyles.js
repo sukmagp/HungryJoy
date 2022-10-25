@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Box = styled.div`
   background: #1E0D0D;
   height: 50 vh;
-  padding-top: 50px;
+  padding-top: 24px;
   padding-bottom: 20px;
   display: flex-row;
   
@@ -39,10 +39,12 @@ export const Column = styled.div`
 
    
 export const Row = styled.div`
+  margin-left: 40px;
+  margin-right: -100px;
   display: grid;
   grid-template-columns: repeat(auto-fill, 
                          minmax(200px, 1fr));
-  grid-gap: 20px;
+  grid-gap: 40px;
    
   @media (max-width: 1000px) {
     grid-template-columns: repeat(auto-fill, 
@@ -51,13 +53,13 @@ export const Row = styled.div`
 `;
    
 export const FooterLink = styled.a`
-  color: #e9e9e9;
-  margin-bottom: 20px;
+  color: #ffff;
+  margin-bottom: 4px;
   font-size: 18px;
   text-decoration: none;
    
   &:hover {
-      color: green;
+      color: rgb(204, 21, 21);
       transition: 200ms ease-in;
   }
 `;
@@ -65,6 +67,15 @@ export const FooterLink = styled.a`
 export const Heading = styled.p`
   font-size: 24px;
   color: #fff;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   font-weight: bold;
+`;
+
+export const Tag = styled.p`
+  font-size: var(--smaller-font-size);
+  text-align: center;
+  color: #fff;
+  background-color: rgb(204, 21, 21);
+  margin-top: 50px;
+  margin-bottom: -20px;
 `;
