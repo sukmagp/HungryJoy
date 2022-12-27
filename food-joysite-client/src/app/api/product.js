@@ -5,8 +5,8 @@ export const getProduct = async (params) => {
     return await axios.get(`${config.api_host}/api/products`, {params})
 }
 
-export const getCategory = async () => {
-    return await axios.get(`${config.api_host}/api/categories`)
+export const getCategories = async () => {
+    return await axios.get(`${config.api_host}/categories`)
 }
 
 export const getTagsByCategory = async (category) => {

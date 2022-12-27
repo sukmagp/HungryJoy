@@ -2,8 +2,8 @@
 .carousel .slick-arrow.slick-next {
   background: #fcfcfc;
   opacity: 68%;
-  width: 47px;
-  height: 104px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,14 +12,18 @@
 }
 .carousel .slick-prev {
   left: 0;
-  border-top-right-radius: 7px;
-  border-bottom-right-radius: 7px;
+  height: 10px;
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%;
 }
 .carousel .slick-next {
   right: 0;
-  border-bottom-left-radius: 7px;
-  border-top-left-radius: 7px;
+  border-bottom-left-radius: 100%;
+  border-top-left-radius: 100%;
 }
+// .carousel .slick-next, .MuiSvgIcon-root{
+//  color: #1E0D0D !important;
+// }
 .slick-prev::before,
 .slick-next::before {
   display: none;
@@ -38,4 +42,8 @@
 .multi__image:hover {
   transform: scale(1.1);
   transition: 500ms;
+}
+
+.MuiSvgIcon-root{
+  color: aqua;
 }

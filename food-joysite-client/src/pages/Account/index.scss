@@ -1,0 +1,33 @@
+$bg-color: rgb(204, 21, 21);
+$dark-bg: #1E0D0D;
+
+.form-account{
+    margin-top: 50px;
+}
+
+.account-tittle{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bolder;
+    color: $dark-bg;
+}
+
+.item-account{
+    color: $dark-bg !important;
+    text-decoration: none;
+    &:hover {
+        background-color: $bg-color !important;
+        color: whitesmoke !important;
+        // opacity: 50%;
+      }
+}
+
+.list-group-item{
+    display: inline-block;
+}
+
+.list-group-item.active{
+    color: whitesmoke !important;
+    background-color: $bg-color !important;
+    border-color: $bg-color !important;
+}

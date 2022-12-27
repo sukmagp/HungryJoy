@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { config } from '../../config';
 
-export const registerUser = async (data) => {
+export const signUp = async (data) => {
 
     return await axios.post(`${config.api_host}/auth/register`, data)
 }
 
-export const loginUser = async (data) => {
-
+export const signIn = async (data) => {
+    console.log(data);
     return await axios.post(`${config.api_host}/auth/login`, data)
 }
 

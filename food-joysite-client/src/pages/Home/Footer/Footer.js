@@ -1,9 +1,8 @@
 import React from "react";
-import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
-import PlaceIcon from '@mui/icons-material/Place';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookIcon from '@mui/icons-material/Facebook';
+import logo from '../../../images/logoQ.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import {
     Box,
     Paragraph,
@@ -22,8 +21,8 @@ const Footer = () => {
                 <Row>
                     <Column>
                         <img
-                            alt=""
-                            src="/logoQ.png"
+                            src={logo}
+                            alt='icon'
                             width="210"
                             height="160"
                         />
@@ -40,11 +39,11 @@ const Footer = () => {
                     <Column>
                         <Heading>Grab Us</Heading>
                         <FooterLink href="#">
-                            <PhoneEnabledIcon color="action" />
+                        <FontAwesomeIcon icon={faPhone} />
                             &nbsp;0888-7777-9999
                         </FooterLink>
                         <FooterLink href="#">
-                            <PlaceIcon/>
+                        <FontAwesomeIcon icon={faLocationDot} />
                             &nbsp;Main Store
                             <br/>
                             Jalan Tendean Raya No. 12, Jakarta Selatan, DKI Jakarta
@@ -53,9 +52,16 @@ const Footer = () => {
                     <Column>
                         <Heading>Social Media</Heading>
                         <FooterLink href="#">
-                            <InstagramIcon/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <TwitterIcon/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <FacebookIcon/>
+                            <FontAwesomeIcon icon={faInstagram} size="lg"/>
+                            &nbsp;hungryjoy.id
+                        </FooterLink>
+                        <FooterLink href="#">
+                            <FontAwesomeIcon icon={faFacebook} size="lg"/>
+                            &nbsp;HungryJoy
+                        </FooterLink>
+                        <FooterLink href="#">
+                            <FontAwesomeIcon icon={faTwitter} size="lg"/>
+                            &nbsp;HungryJoyID
                         </FooterLink>
                     </Column>
                 </Row>

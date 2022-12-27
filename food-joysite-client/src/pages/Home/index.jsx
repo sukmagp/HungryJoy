@@ -4,13 +4,14 @@ import "slick-carousel/slick/slick-theme.css";
 import "./index.scss";
 import { data } from "../../data";
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
+import Menu from "./Menu";
 
 const PreviousBtn = (props) => {
   // console.log(props);
   const { className, onClick } = props;
   return (
     <div className={className} onClick={onClick}>
-      <ArrowBackIos style={{ color: "blue", fontSize: "30px" }} />
+      <ArrowBackIos style={{ marginLeft: "8px", color: "#1E0D0D", fontSize: "24px" }} />
     </div>
   );
 };
@@ -18,17 +19,18 @@ const NextBtn = (props) => {
   const { className, onClick } = props;
   return (
     <div className={className} onClick={onClick}>
-      <ArrowForwardIos style={{ color: "blue", fontSize: "30px" }} />
+      <ArrowForwardIos style={{ marginLeft: "8px", color: "#1E0D0D", fontSize: "24px" }} />
     </div>
   );
 };
 
 const Home = () => {
   return (
-    <div className="carousel">
+    <>
+    <div className="carousel" style={{ paddingTop:"5rem"}}>
       <Slider
         autoplay
-        autoplaySpeed={2000}
+        autoplaySpeed={3500}
         // dots
         initialSlide={2}
         infinite
@@ -52,13 +54,15 @@ const Home = () => {
         }}
         dotsClass="slick-dots custom-indicator"
       >
-        {data.map((item) => (
-          <div>
-            <img src={item} alt="" style={{ width: "100%", height: "54vh" }} />
+        {data.map((item, index) => (
+          <div key={index}>
+            <img src={item} alt="" style={{ width: "100%", height: "auto"}} />
           </div>
         ))}
       </Slider>
     </div>
+    <Menu/>
+    </>
   );
 };
 

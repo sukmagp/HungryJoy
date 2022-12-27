@@ -4,7 +4,7 @@ import { config } from '../../config';
 export const createOrder = async payload => {
     const {token} = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : {};
 
-    return await axios.post(`${config.api_host}/api/orders`, payload, {
+    return await axios.post(`${config.api_host}/orders`, payload, {
         headers: {
             authorization: `Bearer ${token}`
         }
@@ -16,7 +16,7 @@ export async function getInvoiceByOrderId(order_id) {
     ? JSON.parse(localStorage.getItem('auth')) : {};
 
     return await axios 
-    .get(`${config.api_host}/api/invoices${order_id}`, {
+    .get(`${config.api_host}/invoices${order_id}`, {
         headers: {
             authorization: `Bearer ${token}`
         }
@@ -28,7 +28,7 @@ export async function getOrders () {
     ? JSON.parse(localStorage.getItem('auth')) : {};
 
     return await axios 
-    .get(`${config.api_host}/api/orders?limit=`, {
+    .get(`${config.api_host}/orders?limit=`, {
         headers: {
             authorization: `Bearer ${token}`
         }

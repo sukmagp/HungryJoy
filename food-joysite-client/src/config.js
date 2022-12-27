@@ -1,14 +1,17 @@
-const dotenv = require('dotenv');
-const path = require('path');
+const dotenv = require("dotenv");
+// const path = require("path");
 
 dotenv.config();
-module.exports = {
-    rootPath: path.resolve(__dirname, '..'),
-    secretkey: process.env.SECRET_KEY,
-    serviceName: process.env.SERVICE_NAME,
-    dbHost: process.env.DB_HOST,
-    dbPort: process.env.DB_PORT,
-    dbUser: process.env.DB_USER,
-    dbPass: process.env.DB_PASS,
-    dbName: process.env.DB_NAME,
-}
+const config = {
+  api_host: process.env.REACT_APP_API_HOST,
+  site_title: process.env.REACT_APP_SITE_TITLE,
+  global_ongkir: process.env.REACT_APP_GLOBAL_ONGKIR,
+  owner: process.env.REACT_APP_OWNER,
+  contact: process.env.REACT_APP_CONTACT,
+  billing: {
+    account_no: process.env.REACT_APP_BILLING_NO,
+    bank_name: process.env.REACT_APP_BILLING_BANK,
+  },
+};
+
+export { config };

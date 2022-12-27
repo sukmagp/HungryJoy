@@ -1,0 +1,32 @@
+$bg-color: rgb(204, 21, 21);
+$bg-hoover: #e9e9e9;
+$dark-bg: #1E0D0D;
+$shadow-color: 1px 1px 5px rgba(0,0, 0, .5);
+$white-9: rgba(255, 255, 255, .9);
+$white-7: rgba(255, 255, 255, .7);
+
+
+.cart-card{
+    margin-top: 72px;
+}
+
+.cart-tittle{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+
+.img-cart {
+    border-radius: 100%;
+}
+
+.btn-handle{
+    background-color: $bg-color !important;
+    border-color: $bg-color !important;
+    &:hover{
+        background-color: whitesmoke !important;
+        color: $bg-color !important;
+        border-color: $bg-color !important;
+    }
+}
