@@ -15,11 +15,12 @@ export default function Invoices() {
 
   const builderData = useCallback(
     (data) => {
+      console.log("invoice");
       console.log(data);
       return [
-        { label: "Status", value: data.payment_status },
-        { label: "Order ID", value: `#${data.order.order_number}` },
-        { label: "Total Amount", value: formatRupiah(data.total) },
+        { label: "Status", value: data?.payment_status },
+        { label: "Order ID", value: `#${data?.order?.order_number}` },
+        { label: "Total Amount", value: formatRupiah(data?.total) },
         {
           label: "Billed to",
           value: (
@@ -30,11 +31,11 @@ export default function Invoices() {
               {auth.user.email}
               <br />
               <br />
-              {data.delivery_address.provinsi},{" "}
-              {data.delivery_address.kabupaten},{" "}
-              {data.delivery_address.kecamatan},{" "}
-              {data.delivery_address.kelurahan}
-              <br />({data.delivery_address.detail})
+              {data?.delivery_address?.provinsi},{" "}
+              {data?.delivery_address?.kabupaten},{" "}
+              {data?.delivery_address?.kecamatan},{" "}
+              {data?.delivery_address?.kelurahan}
+              <br />({data?.delivery_address?.detail})
               <br />
               <br />
             </div>
@@ -66,7 +67,7 @@ export default function Invoices() {
     getInvoiceByOrderId(id)
       .then(({ data }) => {
         console.log(data);
-        setInvoice(builderData(data));
+        setInvoice(builderData(data.data));
       })
       .finally((_) => setIsFetching(false));
   }, [id, builderData]);

@@ -6,7 +6,8 @@ const OrderItem = require('../order-item/model');
 
 const store = async(req, res, next) => {
     try {
-        let {delivery_fee, DeliveryAddress} = req.body;
+        console.log(req.body);
+        let {delivery_fee, delivery_address} = req.body;
         let items = await CartItem.find({user: req.user._id}).populate('product');
         if (!items) {
             return res.json({
@@ -15,6 +16,7 @@ const store = async(req, res, next) => {
             })
         }
         let address = await DeliveryAddress.findById(delivery_address);
+        console.log(address);
         let order = new Order ({
             _id: new Types.ObjectId(),
             status: 'waiting_payment',
@@ -29,7 +31,7 @@ const store = async(req, res, next) => {
             user: req.user._id
         });
         let orderItems = 
-        await Orderitem
+        await OrderItem
         .insertMany(items.map(item => ({
             ...item,
             name: item.product.name,
@@ -40,9 +42,12 @@ const store = async(req, res, next) => {
         })));
         orderItems.forEach(item => order.order_items.push(item));
         order.save();
+        console.log(orderItems);
         await CartItem.deleteMany({user: req.user._id});
+        console.log("deletecarditem");
         return res.json(order);
     } catch (err) {
+        console.log("Error order", err);
         if(err && err.name === 'ValidationError'){
             return res.json({
                 error: 1, 

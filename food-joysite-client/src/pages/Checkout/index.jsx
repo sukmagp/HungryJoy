@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes, useNavigate, useLocation } from "react-router";
+import { Route, Routes, useNavigate, useLocation, Outlet } from "react-router";
+import Confirmation from "../Confirmation";
+import Invoices from '../Invoices';
 import { getAddress } from "../../app/api/address";
 import { createOrder } from "../../app/api/order";
 import { clearItem } from "../../app/features/Cart/actions";
 import { config } from "../../config";
-import { formatRupiah, sumPrice } from "../../utils";
+// import { formatRupiah, sumPrice } from "../../utils";
 import './index.scss';
 
 
@@ -61,58 +63,58 @@ const AddressData = ({ setAddressData }) => {
   );
 };
 
-const Confirmation = ({ data, onClick }) => {
-  const navigate = useNavigate();
-  const cart = useSelector((state) => state.cart);
-  const confirm = [
-    {
-      label: "Alamat",
-      value: (
-        <div>
-          {data.nama}
-          <br />
-          {data.provinsi}, {data.kabupaten}, {data.kecamatan}, {data.kelurahan}
-          <br />({data.detail})
-        </div>
-      ),
-    },
-    { label: "Sub Total", value: formatRupiah(sumPrice(cart)) },
-    { label: "Ongkir", value: formatRupiah(config.global_ongkir) },
-    {
-      label: <strong>Total</strong>,
-      value: (
-        <strong>
-          {formatRupiah(
-            parseInt(sumPrice(cart)) + parseInt(config.global_ongkir)
-          )}
-        </strong>
-      ),
-    },
-  ];
-  return (
-    <>
-      <DataTable
-        columns={[
-          { selector: (row) => row.label },
-          { cell: (row) => row.value },
-        ]}
-        title="Konfirmasi"
-        data={confirm}
-      />
-      <div className="d-flex justify-content-between mt-3">
-        <Button
-          size="sm"
-          onClick={(_) => navigate("/checkout")}
-        >
-          Back
-        </Button>
-        <Button className='btn-co' size="sm" onClick={onClick}>
-          Checkout
-        </Button>
-      </div>
-    </>
-  );
-};
+// const Confirmation = ({ data, onClick }) => {
+//   const navigate = useNavigate();
+//   const cart = useSelector((state) => state.cart);
+//   const confirm = [
+//     {
+//       label: "Alamat",
+//       value: (
+//         <div>
+//           {data.nama}
+//           <br />
+//           {data.provinsi}, {data.kabupaten}, {data.kecamatan}, {data.kelurahan}
+//           <br />({data.detail})
+//         </div>
+//       ),
+//     },
+//     { label: "Sub Total", value: formatRupiah(sumPrice(cart)) },
+//     { label: "Ongkir", value: formatRupiah(config.global_ongkir) },
+//     {
+//       label: <strong>Total</strong>,
+//       value: (
+//         <strong>
+//           {formatRupiah(
+//             parseInt(sumPrice(cart)) + parseInt(config.global_ongkir)
+//           )}
+//         </strong>
+//       ),
+//     },
+//   ];
+//   return (
+//     <>
+//       <DataTable
+//         columns={[
+//           { selector: (row) => row.label },
+//           { cell: (row) => row.value },
+//         ]}
+//         title="Confirmation"
+//         data={confirm}
+//       />
+//       <div className="d-flex justify-content-between mt-3">
+//         <Button
+//           size="sm"
+//           onClick={(_) => navigate("/checkout")}
+//         >
+//           Back
+//         </Button>
+//         <Button className='btn-co' size="sm" onClick={onClick}>
+//           Checkout
+//         </Button>
+//       </div>
+//     </>
+//   );
+// };
 
 export default function Checkout() {
   const { location } = useLocation();
@@ -126,11 +128,15 @@ export default function Checkout() {
       delivery_address: selectedAddress._id,
       delivery_fee: config.global_ongkir,
     };
+    // console.log(payload);
 
     const { data } = await createOrder(payload);
     if (!data.error) {
       dispatch(clearItem());
-      navigate(`/invoices/${data._id}`);
+      console.log("creatorder");
+      console.log(payload);
+      console.log(data);
+      navigate(`/checkout/invoices/${data._id}`);
     }
   };
 
@@ -141,15 +147,17 @@ export default function Checkout() {
         <Card.Body>
           <Routes>
             <Route
+              exact
               path="/"
               element={
                 <AddressData
                   setAddressData={(address) => setSelectedAddress(address)}
                 />
               }
-              exact
+              
             />
             <Route
+            exact
               path="/confirm"
               element={
                 <Confirmation
@@ -157,9 +165,18 @@ export default function Checkout() {
                   onClick={handleCreateOrder}
                 />
               }
-              exact
+              
+            />
+            <Route
+            exact
+              path="/invoices/:id"
+              element={
+                <Invoices/>
+              }
+              
             />
           </Routes>
+          <Outlet />
         </Card.Body>
       </Card>
     </Container>

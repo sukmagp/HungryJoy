@@ -1,4 +1,4 @@
-import { Button, Form, FormControl, Nav, NavDropdown, InputGroup, NavItem } from 'react-bootstrap'
+import { Button, Form, FormControl, Nav, NavDropdown, InputGroup } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import {useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,7 @@ const Navigation = () => {
    navigate('/Auth')
  }
   
-
+console.log("categories: ", categories) ;
   return (
     <div className="nav-header">
       <div className="navbar">

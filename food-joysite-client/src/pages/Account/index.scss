@@ -3,8 +3,14 @@ $dark-bg: #1E0D0D;
 
 .form-account{
     margin-top: 50px;
-}
 
+    .item-account{
+        text-decoration: none;
+    }
+}
+a{
+    text-decoration: none;
+}
 .account-tittle{
     text-align: center;
     font-size: 24px;
@@ -14,19 +20,22 @@ $dark-bg: #1E0D0D;
 
 .item-account{
     color: $dark-bg !important;
-    text-decoration: none;
+    text-decoration: none !important;
     &:hover {
         background-color: $bg-color !important;
         color: whitesmoke !important;
         // opacity: 50%;
       }
+
+    &:active{
+        background-color: $bg-color !important;
+        color: whitesmoke !important;    }
 }
 
-.list-group-item{
-    display: inline-block;
+.list-group a{
+    text-decoration: none;
 }
-
-.list-group-item.active{
+.list-group a:active{
     color: whitesmoke !important;
     background-color: $bg-color !important;
     border-color: $bg-color !important;

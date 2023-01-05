@@ -1,0 +1,31 @@
+$bg-color: rgb(204, 21, 21);
+$dark-bg: #1E0D0D;
+
+.form-co{
+    margin-top: 50px;
+}
+
+.co-tittle{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bolder;
+    color: $dark-bg;
+}
+
+.btn-co{
+    background-color: $bg-color !important;
+    border-color: $bg-color !important;
+    &:hover{
+        background-color: whitesmoke !important;
+        color: $bg-color !important;
+        border-color: $bg-color !important;
+    }
+}
+
+// .btn.disabled, .btn:disabled, fieldset:disabled .btn {
+//      color: var(--bs-btn-disabled-color);
+//      pointer-events: none;
+//      background-color: var(--bs-btn-disabled-bg);
+//      border-color: var(--bs-btn-disabled-border-color);
+//      opacity: 100%;
+// }
