@@ -31,7 +31,7 @@ export default function Home() {
     products.keyword,
   ]);
 
-  const breadcrumb = [{ label: "Menu", path: "/" }];
+  // const breadcrumb = [{ label: "Menu", path: "/" }];
 
   return (
     <div>
@@ -41,7 +41,7 @@ export default function Home() {
         </p>
       </div>
       <Container className="p-3">
-        <BreadCrumb items={breadcrumb} />
+        {/* <BreadCrumb items={breadcrumb} /> */}
         <strong>Tags: </strong>{" "}
         <Tag items={tags} onClick={(tag) => dispatch(toggleTags(tag))} />
         <Row xs={1} lg={4} md={2} className="g-4 mt-1 mb-5">

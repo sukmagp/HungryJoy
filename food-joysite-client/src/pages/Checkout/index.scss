@@ -1,3 +1,4 @@
+$darkbg-color: rgb(170, 20, 20);
 $bg-color: rgb(204, 21, 21);
 $dark-bg: #1E0D0D;
 
@@ -16,16 +17,18 @@ $dark-bg: #1E0D0D;
     background-color: $bg-color !important;
     border-color: $bg-color !important;
     &:hover{
-        background-color: whitesmoke !important;
-        color: $bg-color !important;
-        border-color: $bg-color !important;
+        background-color: $darkbg-color !important;
+        border-color: $darkbg-color !important;
     }
 }
 
-// .btn.disabled, .btn:disabled, fieldset:disabled .btn {
-//      color: var(--bs-btn-disabled-color);
-//      pointer-events: none;
-//      background-color: var(--bs-btn-disabled-bg);
-//      border-color: var(--bs-btn-disabled-border-color);
-//      opacity: 100%;
-// }
+.btn-back{
+    background-color: whitesmoke !important;
+    color: $bg-color !important;
+    border-color: $bg-color !important;
+    &:hover{
+        background-color: rgb(231, 231, 231) !important;
+        color: $darkbg-color !important;
+        border-color: $darkbg-color !important;
+    }
+}

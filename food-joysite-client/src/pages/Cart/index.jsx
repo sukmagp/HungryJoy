@@ -28,7 +28,7 @@ export default function Cart() {
   const columns = [
     {
       name: 'Gambar',
-      selector: row => <Image style={{margin:'10px', maxHeight: '100px', maxWidth:'80px', borderRadius: '100%'}} src={`${config.api_host}/images/products/${row.image_url}`} />
+      selector: row => <Image style={{margin:'10px', maxHeight: '100px', maxWidth:'80px', borderRadius: '20%'}} src={`${config.api_host}/images/products/${row.image_url}`} />
     },
     {
       name: 'Barang',

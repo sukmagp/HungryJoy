@@ -10,5 +10,5 @@ export const getCategories = async () => {
 }
 
 export const getTagsByCategory = async (category) => {
-    return await axios.get(`${config.api_host}/api/tags/${category}`);
+    return await axios.get(`${config.api_host}/api/tags`);
 }

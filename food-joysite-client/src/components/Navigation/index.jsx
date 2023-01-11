@@ -71,7 +71,7 @@ console.log("categories: ", categories) ;
             </Link>
           </Nav.Link>
           <Nav.Link href ="#menu">Menu</Nav.Link>
-          <NavDropdown title={products.category || 'Category'} id="navbarScrollingDropdown">
+          <NavDropdown title={products.category || 'Category'} className="Dropdown-itemMenu">
               {
               Array.isArray(categories)
                 ? categories.map((category, i) => (
@@ -84,6 +84,11 @@ console.log("categories: ", categories) ;
                 ))
                   : null
               }
+              <NavDropdown.Item
+              onClick={() => dispatch(setCategory(''))}
+              >
+                Show All
+              </NavDropdown.Item>
             </NavDropdown>
           <Nav.Link href ="#footer">Contact Us</Nav.Link>
           {

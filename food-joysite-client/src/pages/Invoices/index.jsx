@@ -73,7 +73,7 @@ export default function Invoices() {
   }, [id, builderData]);
 
   return (
-    <Container className="mt-5 p-5">
+    <Container className="p-5">
       <Card>
         <Card.Header>Invoices</Card.Header>
         <Card.Body>

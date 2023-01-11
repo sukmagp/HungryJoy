@@ -28,7 +28,7 @@ const store = async (req, res, next) => {
             await Tag
             .find({name: {$in: payload.tags}});
             if(tags.length){
-                payload = {...payload, tags: tags.map(tag._id)};
+                payload = {...payload, tags: tags.map(tag => tag._id)}
             } else {
                 delete payload.tags;
             }
