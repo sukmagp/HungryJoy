@@ -56,7 +56,7 @@ const Home = () => {
       >
         {data.map((item, index) => (
           <div key={index}>
-            <img src={item} alt="" style={{ width: "100%", height: "auto"}} />
+            <img src={item} alt="" style={{ align: 'center', width: "100%", height: "auto"}} />
           </div>
         ))}
       </Slider>

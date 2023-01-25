@@ -1,3 +1,10 @@
+$bg-color: #cc1515;
+$bg-hoover: #e9e9e9;
+$dark-bg: #1E0D0D;
+$shadow-color: 1px 1px 5px rgba(0,0, 0, .5);
+$white-9: rgba(255, 255, 255, .9);
+$white-7: rgba(255, 255, 255, .7);
+
 // .pagination .btn-pagination {
 //     background-color: red;
 // }
@@ -14,3 +21,20 @@
 //     background-color: #5A4181;
 //     border: solid 1px #5A4181;
 // }
+.pagination {
+    margin-bottom: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+.page-link{
+    color: $dark-bg !important;
+}
+.active>.page-link{
+    background-color: $bg-color !important;
+    border: $bg-color;
+    color: $white-9 !important;
+
+}

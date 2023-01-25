@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Form, Alert } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useFormik } from "formik";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import {
   BoldLink,
   BoxContainer,
-  FormContainer,
   Input,
   MutedLink,
   SubmitButton,
@@ -22,11 +22,8 @@ const schema = yup
     email: yup.string().email().required("Email harus valid"),
     password: yup
       .string()
-      .min(5, "Minimal panjang password harus 5 karakter")
+      .min(5, "Minimal panjang password harus 8 karakter")
       .required("Password Harus diisi"),
-    password_confirmation: yup
-      .string()
-      .oneOf([yup.ref("password"), null], "Password konfirmasi tidak sama"),
   })
   .required();
 
@@ -37,8 +34,45 @@ const statusList = {
   error: "error",
 };
 
+const validate = (values) => {
+  const errors = {};
+
+  if (!values.full_name) {
+    errors.full_name = "Full Name harus diisi";
+  } else if (values.full_name.length < 8) {
+    errors.full_name = "Must be 8 characters or more";
+  }
+
+  if (!values.email) {
+    errors.email = "Email harus diisi";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+  }
+
+  if (!values.password) {
+    errors.password = "Password harus diisi";
+  } else if (values.password.length < 4) {
+    errors.password = "Must be 4 characters or more";
+  }
+
+  // console.log(errors);
+  return errors;
+};
+
 export function SignupForm() {
   const { switchToSignin } = useContext(AccountContext);
+
+  const formik = useFormik({
+    initialValues: {
+      full_name: "",
+      email: "",
+      password: "",
+    },
+    validate,
+    onSubmit: (values) => {
+      onSubmit(values);
+    },
+  });
 
   const {
     register,
@@ -48,12 +82,13 @@ export function SignupForm() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const [status, setStatus] = React.useState(statusList.idle);
-  const navigate = useNavigate();
+  // const [status, setStatus] = React.useState(statusList.idle);
+  // const navigate = useNavigate();
 
-  const onSubmit = async (formData) => {
-    setStatus(statusList.process);
-    const { data } = await signUp(formData);
+  const onSubmit = async (value) => {
+    // setStatus(statusList.process);
+    const { data } = await signUp(value);
+    console.log(data);
     if (data.error) {
       let fields = Object.keys(data.fields);
       fields.forEach((field) =>
@@ -62,89 +97,58 @@ export function SignupForm() {
           message: data.fields[field]?.properties?.message,
         })
       );
-      setStatus(statusList.error);
+      // setStatus(statusList.error);
       return;
+    }else {
+      alert("Kamu Berhasil Melakukan Register");
     }
-    setStatus(statusList.success);
+    // setStatus(statusList.success);
   };
-
-  // const [fname, setFullname] = useState();
-  // const [email, setEmail] = useState();
-  // const [password, setPassword] = useState();
-  // const [confirmpass, setConfirmpass] = useState();
-
-  // const register = async() => {
-  //   let result = await signUp({fname, email, password, confirmpass})
-  //   console.log(result);
-  //   localStorage.setItem('token', result.data.token);
-  //   if (result.data.token){
-  //     navigate('/Auth')
-  //   }else{
-  //     alert(result.data.message)
-  //   }
-
-  // }
 
   return (
     <BoxContainer>
-      <FormContainer>
-        {status === statusList.success ? (
-          <Alert variant="success">
-            Registrasi berhasil silahkan{" "}
-            <Alert.Link onClick={() => navigate.push('/Auth')}>Login</Alert.Link> dengan email dan password anda
-          </Alert>
-        ) : null}
+      <Form onSubmit={formik.handleSubmit}>
         <Input
-          onSubmit={handleSubmit(onSubmit)}
+          id="full_name"
+          name="full_name"
           type="text"
           placeholder="Full Name"
-          isInvalid={errors.email}
-          {...register("full_name")}
+          isInvalid={errors.full_name}
+          onChange={formik.handleChange}
+          value={formik.values.full_name}
+          // {...register("full_name")}
         />
-        <Form.Control.Feedback type="invalid">
-          {errors.full_name?.message}
-        </Form.Control.Feedback>
+        {formik.errors.full_name ? <div>{formik.errors.full_name}</div> : null}
 
         <Input
-          onSubmit={handleSubmit(onSubmit)}
+          id="email"
+          name="email"
           type="email"
           placeholder="Email"
           isInvalid={errors.email}
-          {...register("email")}
+          onChange={formik.handleChange}
+          value={formik.values.email}
+          // {...register("email")}
         />
-        <Form.Control.Feedback type="invalid">
-          {errors.email?.message}
-        </Form.Control.Feedback>
+        {formik.errors.email ? <div>{formik.errors.email}</div> : null}
 
         <Input
-          onSubmit={handleSubmit(onSubmit)}
+          id="password"
+          name="password"
           type="password"
           placeholder="Password"
           isInvalid={errors.password}
-          {...register("password")}
+          onChange={formik.handleChange}
+          value={formik.values.password}
+          // {...register("password")}
         />
-        <Form.Control.Feedback type="invalid">
-          {errors.password?.message}
-        </Form.Control.Feedback>
-
-        <Input
-          onSubmit={handleSubmit(onSubmit)}
-          type="password"
-          placeholder="Comfirm Your Password"
-          isInvalid={errors.password_confirmation}
-          {...register("password_confirmation")}
-        />
-        <Form.Control.Feedback type="invalid">
-          {errors.password_confirmation?.message}
-        </Form.Control.Feedback>
-      </FormContainer>
+        {formik.errors.password ? <div>{formik.errors.password}</div> : null}
 
       <Marginer direction="vertical" margin={10} />
-      <SubmitButton 
-      type="submit"
-      disabled={status === statusList.process}>
-        { status === statusList.process ? 'Memproses...' : 'Register'}
+      <SubmitButton type="submit">
+        Register
       </SubmitButton>
+      </Form>
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
         Already have an account?
@@ -155,3 +159,5 @@ export function SignupForm() {
     </BoxContainer>
   );
 }
+
+//how to create register in reactjs?

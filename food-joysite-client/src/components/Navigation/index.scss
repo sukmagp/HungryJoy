@@ -52,6 +52,24 @@ $white-7: rgba(255, 255, 255, .7);
           color: $bg-color;
         }
     }
+    
+    .Dropdown-itemMenu-category .dropdown-menu{
+      a {
+        color: $bg-color !important;
+        text-decoration: none;
+
+        &:hover {
+          background-color: $bg-hoover;
+          color: $bg-color;
+        }
+      
+    }
+    .dropdown-item.active {
+      background-color: $bg-color;
+      color: $white-9 !important;
+    }
+    }
+
     .Dropdown-itemMenu {
       .dropdown-item{
         a {

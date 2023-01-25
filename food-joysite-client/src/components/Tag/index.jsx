@@ -14,8 +14,8 @@ function Tag({items, onClick}) {
         items?.map((item, i) => (
           <Badge 
             pill 
-            bg={products.tags.includes(item.name) ? 'warning' : 'secondary'} 
-            style={{fontSize: '60%', cursor: 'pointer'}} 
+            bg={products.tags.includes(item.name) ? 'danger' : 'secondary'} 
+            style={{width: '100px', height:'32px', padding:'10px', fontSize: '72%', cursor: 'pointer'}} 
             key={i}
             onClick={() => onClick(item.name)}
           ><FontAwesomeIcon icon={faTags} /> {item.name}</Badge>

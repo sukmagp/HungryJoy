@@ -3,12 +3,15 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getTagsByCategory } from "../../../app/api/product";
 import { addItem } from "../../../app/features/Cart/actions";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDownLong } from '@fortawesome/free-solid-svg-icons';
+import { faComputerMouse } from '@fortawesome/free-solid-svg-icons';
 import {
   fetchProducts,
   setPage,
   toggleTags,
 } from "../../../app/features/Product/actions";
-import BreadCrumb from "../../../components/BreadCrumb";
+// import BreadCrumb from "../../../components/BreadCrumb";
 import CardProduct from "../../../components/CardProduct";
 import CardProductPlaceholder from "../../../components/CardProductPlaceholder";
 import Paginate from "../../../components/Paginate";
@@ -37,7 +40,11 @@ export default function Home() {
     <div>
       <div>
         <p className="tittle" id="menu">
-          <span className="teks"> Our Menu's </span>
+          <span className="teks"> 
+          <FontAwesomeIcon icon={faComputerMouse} />
+          &nbsp; Scroll Down &nbsp; 
+          <FontAwesomeIcon icon={faArrowDownLong} />
+          </span>
         </p>
       </div>
       <Container className="p-3">

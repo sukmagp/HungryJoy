@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import {motion} from 'framer-motion/dist/framer-motion'
 import { LoginForm } from "./login";
-// import { motion } from "framer-motion";
 import { AccountContext } from "./accountContext";
 import { SignupForm } from "./register";
+import './indexLogin.scss';
 
 const BoxContainer = styled.div`
+  margin-top: 40px;
+  margin-bottom: 45px;
   width: 280px;
   min-height: 550px;
   display: flex;
