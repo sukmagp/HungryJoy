@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Form, Alert } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useFormik } from "formik";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -27,30 +27,30 @@ const schema = yup
   })
   .required();
 
-const statusList = {
-  idle: "idle",
-  process: "process",
-  success: "success",
-  error: "error",
-};
+// const statusList = {
+//   idle: "idle",
+//   process: "process",
+//   success: "success",
+//   error: "error",
+// };
 
 const validate = (values) => {
   const errors = {};
 
   if (!values.full_name) {
-    errors.full_name = "Full Name harus diisi";
+    errors.full_name = "Full name is required";
   } else if (values.full_name.length < 8) {
     errors.full_name = "Must be 8 characters or more";
   }
 
   if (!values.email) {
-    errors.email = "Email harus diisi";
+    errors.email = "Email is required";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = "Invalid email address";
   }
 
   if (!values.password) {
-    errors.password = "Password harus diisi";
+    errors.password = "Password is required";
   } else if (values.password.length < 4) {
     errors.password = "Must be 4 characters or more";
   }
@@ -75,8 +75,6 @@ export function SignupForm() {
   });
 
   const {
-    register,
-    handleSubmit,
     formState: { errors },
     setError,
   } = useForm({
@@ -100,7 +98,7 @@ export function SignupForm() {
       // setStatus(statusList.error);
       return;
     }else {
-      alert("Kamu Berhasil Melakukan Register");
+      alert("Your account success to register :)");
     }
     // setStatus(statusList.success);
   };

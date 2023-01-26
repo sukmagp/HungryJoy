@@ -24,9 +24,6 @@ export default function Profile() {
             ]}
           />
         </Card.Body>
-        {/* <Button className='btn-back-profile' size="md" onClick={_ => navigate('/account')}>
-          Back
-        </Button> */}
       </Card>
     </Container>
   );

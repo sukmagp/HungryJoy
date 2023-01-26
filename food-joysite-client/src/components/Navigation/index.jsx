@@ -39,7 +39,7 @@ const Navigation = () => {
   const [token, setToken] = useState();
   useEffect(() => {
     const token = auth.token;
-    console.log(token);
+    // console.log(token);
     setToken(token);
   }, []);
 
@@ -48,7 +48,6 @@ const Navigation = () => {
     navigate("/Auth");
   };
 
-  console.log("categories: ", categories);
   return (
     <div className="nav-header">
       <div className="navbar">

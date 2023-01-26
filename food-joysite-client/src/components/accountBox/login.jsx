@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
@@ -36,13 +36,13 @@ const validate = (values) => {
   const errors = {};
 
   if (!values.email) {
-    errors.email = "Email harus diisi";
+    errors.email = "Email is required!";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = "Invalid email address";
   }
 
   if (!values.password) {
-    errors.password = "Password harus diisi";
+    errors.password = "Password is required!";
   } else if (values.password.length < 4) {
     errors.password = "Must be 4 characters or less";
   }
@@ -55,7 +55,6 @@ export function LoginForm() {
 
   const {
     formState: { errors },
-    setError,
   } = useForm({
     resolver: yupResolver(schema),
   });

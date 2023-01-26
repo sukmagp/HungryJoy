@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 function Tag({items, onClick}) {
   const products = useSelector(state => state.products);
-  console.log(items);
+  // console.log(items);
   return (
     <>
       {
